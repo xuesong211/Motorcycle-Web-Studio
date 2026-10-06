@@ -68,6 +68,7 @@ function translatedSection(startHeading, endHeading) {
 }
 const learningGuides = {
   '维修学习': `${await readFile(path.join(learningRoot, 'REPAIR_LEARNING.md'), 'utf8')}\n\n---\n\n${translatedSection('## 第一编', '## 第二编')}`,
+  '发动机机械': await readFile(path.join(learningRoot, 'ENGINE_MECHANICAL_PRINCIPLES.md'), 'utf8'),
   '摩托设计': `${await readFile(path.join(learningRoot, 'MOTORCYCLE_DESIGN.md'), 'utf8')}\n\n---\n\n${translatedSection('## 第二编', '## 第三编')}`,
   '维修工具': `${await readFile(path.join(learningRoot, 'WORKSHOP_TOOLS.md'), 'utf8')}\n\n---\n\n${translatedSection('## 第三编')}`,
   '车型专项': await readFile(path.join(learningRoot, 'RIDER_TYPE_MODULES.md'), 'utf8'),

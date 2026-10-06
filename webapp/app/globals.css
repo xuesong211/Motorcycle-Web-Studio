@@ -760,7 +760,7 @@ button {
 }
 .track-overview {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 14px;
 }
 .track-card {
@@ -810,6 +810,59 @@ button {
 .learning-guide {
   max-width: 980px;
   margin: 0 auto 36px;
+}
+.mechanical-learning-map {
+  margin: 26px 0 34px;
+  padding: 22px;
+  border: 1px solid #d8c8b4;
+  background: #f7efe1;
+}
+.mechanical-learning-map small {
+  color: #a34d2d;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+.mechanical-learning-map h2 {
+  margin: 6px 0 20px;
+  color: #172f43;
+  font-family: Georgia, 'Noto Serif SC', serif;
+  font-size: clamp(23px, 3vw, 30px);
+}
+.mechanical-learning-map ol {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.mechanical-learning-map li {
+  min-height: 134px;
+  padding: 14px;
+  border: 1px solid #dccdbb;
+  background: #fffdf8;
+}
+.mechanical-learning-map li > span,
+.mechanical-learning-map li > strong {
+  display: block;
+}
+.mechanical-learning-map li > span {
+  color: #a34d2d;
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 800;
+}
+.mechanical-learning-map li > strong {
+  margin-top: 10px;
+  color: #173148;
+  font-size: 14px;
+}
+.mechanical-learning-map li > p {
+  margin: 7px 0 0;
+  color: #65717a;
+  font-size: 11px;
+  line-height: 1.55;
 }
 .tool-atlas-library {
   margin: 30px 0 4px;
@@ -1511,6 +1564,9 @@ footer {
   .general-tools-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .mechanical-learning-map ol {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 @media (max-width: 760px) {
   .topbar {
@@ -1608,6 +1664,12 @@ footer {
     max-width: 250px;
   }
   .general-tools-grid {
+    grid-template-columns: 1fr;
+  }
+  .mechanical-learning-map {
+    padding: 18px;
+  }
+  .mechanical-learning-map ol {
     grid-template-columns: 1fr;
   }
   .resource-card dl > div {

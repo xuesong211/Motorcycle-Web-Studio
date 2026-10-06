@@ -54,10 +54,19 @@ const groupTone: Record<string, string> = {
 
 const learningTone: Record<string, string> = {
   维修学习: 'tone-orange',
+  发动机机械: 'tone-red',
   摩托设计: 'tone-violet',
   维修工具: 'tone-green',
   车型专项: 'tone-blue',
 };
+
+const learningTrackOrder = [
+  '维修学习',
+  '发动机机械',
+  '维修工具',
+  '车型专项',
+  '摩托设计',
+] as const;
 
 const moduleOutputs: Record<string, { artifact: string; done: string }> = {
   接车基础: {
@@ -191,6 +200,33 @@ function MarkdownReader({
         );
       })}
     </div>
+  );
+}
+
+function MechanicalLearningMap() {
+  const stages = [
+    ['01', '燃烧与往复', '四冲程、压缩密封、活塞、连杆与曲轴。'],
+    ['02', '缸数与平衡', '单缸、双缸、三缸、四缸的结构和记录方法。'],
+    ['03', '配气与正时', '缸盖、气门间隙、凸轮和正时传动的门禁。'],
+    ['04', '进气与点火', '空滤、进气密封、火花塞、线圈与燃烧条件。'],
+    ['05', '症状与复验', '按工况取证，修复后回到原触发条件确认。'],
+  ] as const;
+  return (
+    <section className="mechanical-learning-map" aria-labelledby="mechanical-learning-map-title">
+      <div>
+        <small>机械学习顺序</small>
+        <h2 id="mechanical-learning-map-title">先理解动力路径，再进入拆检与诊断</h2>
+      </div>
+      <ol>
+        {stages.map(([number, title, description]) => (
+          <li key={number}>
+            <span>{number}</span>
+            <strong>{title}</strong>
+            <p>{description}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 }
 
@@ -475,6 +511,8 @@ export default function Home() {
       ),
     [learningTrack],
   );
+  const isStructuredLearningTrack =
+    learningTrack === '车型专项' || learningTrack === '发动机机械';
   const progress = Math.round(
     (completed.length / content.modules.length) * 100,
   );
@@ -1385,7 +1423,7 @@ export default function Home() {
                 {(
                   [
                     '全部',
-                    ...Object.keys(content.learningGuides),
+                    ...learningTrackOrder,
                   ] as LearningTrack[]
                 ).map((item) => (
                   <Button
@@ -1399,11 +1437,7 @@ export default function Home() {
               </div>
               {learningTrack === '全部' ? (
                 <div className="track-overview">
-                  {(
-                    Object.keys(content.learningGuides) as Array<
-                      keyof typeof content.learningGuides
-                    >
-                  ).map((track) => (
+                  {learningTrackOrder.map((track) => (
                     <button
                       key={track}
                       className="track-card"
@@ -1411,13 +1445,17 @@ export default function Home() {
                     >
                       <Badge className={learningTone[track]}>
                         {track === '车型专项'
-                          ? '3 个模块'
+                          ? '3 个车型模块'
+                          : track === '发动机机械'
+                            ? '8 个机械单元'
                           : `${content.learningResources.filter((item) => item.track === track).length} 项来源`}
                       </Badge>
                       <h2>{track}</h2>
                       <p>
                         {track === '维修学习'
                           ? '按职业能力组织安全、工具、电气、发动机、底盘和诊断实训。'
+                          : track === '发动机机械'
+                            ? '按动力路径讲清缸数、配气、润滑、空滤、火花塞与症状诊断。'
                           : track === '摩托设计'
                             ? '从产品任务、整车布置和车辆动力学走到 CAD、CAE 与样车验证。'
                             : track === '维修工具'
@@ -1439,6 +1477,7 @@ export default function Home() {
                     <span>中文精编课 · 原始来源已重组</span>
                   </div>
                   {learningTrack === '维修工具' && <GeneralToolsAtlas />}
+                  {learningTrack === '发动机机械' && <MechanicalLearningMap />}
                   <MarkdownReader
                     markdown={content.learningGuides[learningTrack]}
                   />
@@ -1450,18 +1489,20 @@ export default function Home() {
                   <h2>
                     {learningTrack === '全部'
                       ? '全部扩展学习资源'
-                      : learningTrack === '车型专项'
+                      : isStructuredLearningTrack
                         ? '模块构成'
-                      : `${learningTrack}来源`}
+                        : `${learningTrack}来源`}
                   </h2>
                 </div>
                 <Badge variant="outline">
                   {learningTrack === '车型专项'
                     ? 'ADV · 踏板 · 仿赛'
+                    : learningTrack === '发动机机械'
+                      ? '缸数 · 配气 · 进气 · 点火'
                     : `${filteredResources.length} 项`}
                 </Badge>
               </div>
-              {learningTrack !== '车型专项' && (
+              {!isStructuredLearningTrack && (
                 <div className="resource-grid">
                   {filteredResources.map((item) => (
                   <article key={item.id} className="resource-card">
