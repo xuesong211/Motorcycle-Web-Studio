@@ -2,7 +2,7 @@
 
 此目录是 `release/motorcycle-web-studio-nginx.zip` 的发布源文件。该压缩包可直接解压到 Linux 服务器，再由 Nginx 对外提供访问。
 
-应用使用 Vinext 的服务端渲染构建，因此 Nginx 负责静态资源缓存和反向代理，页面服务由包内的 Vinext 生产运行时提供。部署机器需要安装 Nginx 与 Node.js 22.13 或更高版本。
+应用使用 Vinext 的服务端渲染构建，因此 Nginx 负责静态资源缓存和反向代理，页面服务由包内的 Vinext 生产运行时提供。部署机器需要安装 Nginx 与 Node.js 22.13 或更高版本，或安装 Docker 并使用包内的容器启动脚本。
 
 ## 部署步骤
 
@@ -42,6 +42,19 @@
    ```
 
 Nginx 默认监听 80 端口。请按服务器域名修改 `server_name`，并在云服务器安全组或防火墙中开放所需的 HTTP/HTTPS 端口。
+
+## Docker 启动方式
+
+当服务器缺少 Node.js 22 时，使用 Docker 运行应用服务。该脚本让容器只监听本机 `127.0.0.1:8787`，仍由 Nginx 对公网提供访问：
+
+```bash
+cd /opt/motorcycle-web-studio
+chmod +x scripts/start-container.sh
+./scripts/start-container.sh
+docker logs -f motorcycle-web-studio
+```
+
+首次启动会拉取 `node:22-bookworm-slim` 镜像并安装生产依赖。容器设置为自动重启；更新 `app` 目录后，重新执行此脚本即可替换容器。
 
 ## Windows 本地验证
 
