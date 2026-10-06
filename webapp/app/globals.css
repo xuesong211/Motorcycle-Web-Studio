@@ -171,6 +171,17 @@ button {
   display: grid;
   gap: 4px;
 }
+.nav-group-label {
+  margin: 18px 12px 3px;
+  color: #8a786b;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.nav-item + .nav-group-label {
+  margin-top: 22px;
+}
 .nav-item {
   display: flex;
   align-items: center;
@@ -1097,6 +1108,7 @@ button {
 }
 .home-heading {
   align-items: center;
+  margin-bottom: 34px;
 }
 .overall-score {
   display: grid;
@@ -1122,6 +1134,9 @@ button {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
   gap: 18px;
+  padding: 18px;
+  border: 1px solid #d9d1c5;
+  background: #ebe6dc;
 }
 .continue-card {
   display: flex;
@@ -1236,7 +1251,9 @@ button {
 }
 .core-path-section,
 .quick-search-section {
-  margin-top: 34px;
+  margin-top: 42px;
+  padding-top: 28px;
+  border-top: 1px solid #d8d2c6;
 }
 .section-heading {
   display: flex;
@@ -1264,7 +1281,7 @@ button {
   grid-template-columns: 38px 1fr 18px;
   gap: 12px;
   align-items: start;
-  min-height: 176px;
+  min-height: 188px;
   padding: 20px;
   border: 1px solid var(--border);
   background: var(--card);
@@ -1306,6 +1323,22 @@ button {
   flex-wrap: wrap;
   gap: 8px;
 }
+.diagnosis-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.diagnosis-group {
+  padding: 16px;
+  border: 1px solid #d8d2c6;
+  background: #fffdf8;
+}
+.diagnosis-group > strong {
+  display: block;
+  margin-bottom: 12px;
+  color: #183b56;
+  font-size: 13px;
+}
 .query-chips button {
   display: flex;
   align-items: center;
@@ -1326,7 +1359,7 @@ button {
 .home-safety {
   display: flex;
   gap: 14px;
-  margin-top: 32px;
+  margin-top: 42px;
   padding: 18px;
   border: 1px solid #d8c8b4;
   background: #f7efe1;
@@ -1469,6 +1502,9 @@ footer {
   .path-lanes {
     grid-template-columns: 1fr;
   }
+  .diagnosis-grid {
+    grid-template-columns: 1fr;
+  }
   .path-lanes > button {
     min-height: 0;
   }
@@ -1497,6 +1533,9 @@ footer {
   }
   .sidebar nav {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .nav-group-label {
+    display: none;
   }
   .nav-item {
     justify-content: center;
@@ -1577,6 +1616,9 @@ footer {
   .continue-card {
     min-height: 390px;
     padding: 24px 20px;
+  }
+  .home-primary-grid {
+    padding: 10px;
   }
   .continue-card h2 {
     margin-top: 34px;

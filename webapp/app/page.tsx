@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowRight,
   BookMarked,
@@ -365,6 +365,7 @@ export default function Home() {
     [],
   );
   const [copied, setCopied] = useState<number | null>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const frameId = window.requestAnimationFrame(() => {
@@ -537,6 +538,10 @@ export default function Home() {
     setQuery(term);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+  const focusSearch = () => {
+    setQuery('');
+    window.requestAnimationFrame(() => searchInputRef.current?.focus());
+  };
   const copyPath = async (id: number, pdfPath: string) => {
     await navigator.clipboard.writeText(pdfPath);
     setCopied(id);
@@ -572,6 +577,7 @@ export default function Home() {
         <div className="search-shell">
           <Search className="search-icon" />
           <Input
+            ref={searchInputRef}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="搜索故障、系统、工具、车型或标准值……"
@@ -614,16 +620,7 @@ export default function Home() {
               <HomeIcon />
               今日工位
             </button>
-            <button
-              className={view === 'route' ? 'nav-item active' : 'nav-item'}
-              onClick={() => {
-                setQuery('');
-                setView('route');
-              }}
-            >
-              <Gauge />
-              能力路线
-            </button>
+            <span className="nav-group-label">01 系统学习</span>
             <button
               className={view === 'basics' ? 'nav-item active' : 'nav-item'}
               onClick={() => {
@@ -635,6 +632,16 @@ export default function Home() {
               基础知识
             </button>
             <button
+              className={view === 'route' ? 'nav-item active' : 'nav-item'}
+              onClick={() => {
+                setQuery('');
+                setView('route');
+              }}
+            >
+              <Gauge />
+              能力路线
+            </button>
+            <button
               className={view === 'learning' ? 'nav-item active' : 'nav-item'}
               onClick={() => {
                 setQuery('');
@@ -642,8 +649,9 @@ export default function Home() {
               }}
             >
               <GraduationCap />
-              扩展学习
+              专项与工具
             </button>
+            <span className="nav-group-label">02 工位查阅</span>
             <button
               className={view === 'manuals' ? 'nav-item active' : 'nav-item'}
               onClick={() => {
@@ -652,7 +660,7 @@ export default function Home() {
               }}
             >
               <Library />
-              原始手册
+              车型手册
             </button>
             <button
               className={view === 'digest' ? 'nav-item active' : 'nav-item'}
@@ -662,7 +670,7 @@ export default function Home() {
               }}
             >
               <BookOpen />
-              精华学习稿
+              课程精编
             </button>
             <button
               className={view === 'glossary' ? 'nav-item active' : 'nav-item'}
@@ -848,11 +856,10 @@ export default function Home() {
             <div className="home-view">
               <div className="workbench-heading home-heading">
                 <div>
-                  <small>今日工位 · 从下一步开始</small>
-                  <h1>学习、诊断、查手册，一次只处理一个明确任务</h1>
+                  <small>今日工位 · 清晰地完成下一件事</small>
+                  <h1>从学习到实修，把每一步放在该放的位置</h1>
                   <p>
-                    先完成四门基础课，再沿 12
-                    个能力模块练习。真实车辆作业时，从故障搜索或车型手册进入，不把通用知识直接当作实车参数。
+                    学习时先补原理，再练维修闭环；面对真实车辆时，从症状检索或车型手册进入。知识库提供判断路径，具体参数始终回到对应车型的原厂资料。
                   </p>
                 </div>
                 <div className="overall-score">
@@ -865,7 +872,7 @@ export default function Home() {
               <div className="home-primary-grid">
                 <article className="continue-card">
                   <div className="card-eyebrow">
-                    <span>推荐下一步</span>
+                    <span>01 推荐下一步</span>
                     <Badge
                       className={
                         nextCoreFoundation ? 'tone-blue' : 'tone-orange'
@@ -897,8 +904,8 @@ export default function Home() {
                 </article>
                 <section className="intent-panel" aria-label="快捷工作入口">
                   <div className="intent-heading">
-                    <small>现在要做什么</small>
-                    <h2>按任务进入，不按资料类型猜入口</h2>
+                    <small>工作入口</small>
+                    <h2>按要完成的事进入</h2>
                   </div>
                   <button onClick={continueCoreLearning}>
                     <span className="intent-icon tone-blue">
@@ -910,13 +917,13 @@ export default function Home() {
                     </span>
                     <ArrowRight />
                   </button>
-                  <button onClick={() => startQuickSearch('不起动')}>
+                  <button onClick={focusSearch}>
                     <span className="intent-icon tone-orange">
                       <Search />
                     </span>
                     <span>
-                      <strong>处理故障</strong>
-                      <small>从症状、报码或系统名称检索证据</small>
+                      <strong>诊断故障</strong>
+                      <small>输入症状、报码或系统名称，先找判断路径</small>
                     </span>
                     <ArrowRight />
                   </button>
@@ -935,10 +942,10 @@ export default function Home() {
               <section className="core-path-section">
                 <div className="section-heading">
                   <div>
-                    <small>核心学习路径</small>
-                    <h2>基础原理 → 维修闭环</h2>
+                    <small>02 系统学习路径</small>
+                    <h2>按顺序建立维修能力</h2>
                   </div>
-                  <span>先建立判断力，再训练工位动作</span>
+                  <span>先理解，再操作，最后进入车型专项</span>
                 </div>
                 <div className="path-lanes">
                   <button onClick={() => setView('basics')}>
@@ -948,7 +955,7 @@ export default function Home() {
                         {completedFoundations.length} / {foundations.length}
                       </Badge>
                       <h3>基础知识</h3>
-                      <p>电工电子、材料、液压与整车构造</p>
+                      <p>电工电子、材料、液压与整车构造，建立判断依据。</p>
                     </div>
                     <ArrowRight />
                   </button>
@@ -959,16 +966,16 @@ export default function Home() {
                         {completed.length} / {modules.length}
                       </Badge>
                       <h3>能力路线</h3>
-                      <p>接车、诊断、拆检、车型专项与放行</p>
+                      <p>接车、诊断、拆检、车型专项与放行，完成维修闭环。</p>
                     </div>
                     <ArrowRight />
                   </button>
-                  <button onClick={() => setView('learning')}>
+                  <button onClick={() => openLearningGuide('维修工具')}>
                     <span className="lane-index">03</span>
                     <div>
-                      <Badge className="tone-violet">选修</Badge>
-                      <h3>扩展学习</h3>
-                      <p>维修、设计与工具的中文精编课程</p>
+                      <Badge className="tone-violet">强化</Badge>
+                      <h3>专项与工具</h3>
+                      <p>ADV、踏板、仿赛与维修工具，处理车型差异和工位方法。</p>
                     </div>
                     <ArrowRight />
                   </button>
@@ -977,32 +984,50 @@ export default function Home() {
               <section className="quick-search-section">
                 <div className="section-heading">
                   <div>
-                    <small>高频工位问题</small>
-                    <h2>直接搜索一个症状或系统</h2>
+                    <small>03 面对真实车辆</small>
+                    <h2>从症状开始检索，再回到车型资料确认</h2>
                   </div>
                 </div>
-                <div className="query-chips">
-                  {[
-                    '不起动',
-                    '电压降',
-                    '故障码',
-                    '制动液',
-                    '轮胎规格',
-                    '轴承',
-                    'BMS',
-                    '车架设计',
-                  ].map((term) => (
-                    <button key={term} onClick={() => startQuickSearch(term)}>
-                      <Search />
-                      {term}
-                    </button>
-                  ))}
+                <div className="diagnosis-grid">
+                  <div className="diagnosis-group">
+                    <strong>起动与电气</strong>
+                    <div className="query-chips">
+                      {['不起动', '电压降', '故障码'].map((term) => (
+                        <button key={term} onClick={() => startQuickSearch(term)}>
+                          <Search />
+                          {term}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="diagnosis-group">
+                    <strong>制动与底盘</strong>
+                    <div className="query-chips">
+                      {['制动液', '轮胎规格', '轴承'].map((term) => (
+                        <button key={term} onClick={() => startQuickSearch(term)}>
+                          <Search />
+                          {term}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="diagnosis-group">
+                    <strong>电驱与结构</strong>
+                    <div className="query-chips">
+                      {['BMS', '车架设计'].map((term) => (
+                        <button key={term} onClick={() => startQuickSearch(term)}>
+                          <Search />
+                          {term}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </section>
               <div className="home-safety">
                 <ShieldCheck />
                 <div>
-                  <strong>知识库给你判断路径，原厂手册给你实车参数</strong>
+                  <strong>04 最后确认：原厂手册给出实车参数</strong>
                   <p>
                     涉及扭矩、间隙、燃压、针脚、制动和高压系统时，必须先确认车型、年款与版本，再回看原
                     PDF。
@@ -1345,11 +1370,10 @@ export default function Home() {
             <div className="learning-view">
               <div className="workbench-heading compact">
                 <div>
-                  <small>维修 · 设计 · 工具</small>
-                  <h1>从会修，到理解为什么这样修</h1>
+                  <small>车型专项 · 工具 · 进阶资料</small>
+                  <h1>在维修闭环之后，再处理车型差异与专项方法</h1>
                   <p>
-                    扩展学习是选修层，不阻塞 16
-                    项核心路线。先读中文精编课，再打开权威来源深入；具体车型数据仍回查本地原始手册。
+                    这里用于强化 ADV、踏板、仿赛和维修工具等专项知识，不替代核心路线。先读中文精编课，再打开权威来源深入；具体车型数据仍回查本地原始手册。
                   </p>
                 </div>
                 <div className="learning-count">
