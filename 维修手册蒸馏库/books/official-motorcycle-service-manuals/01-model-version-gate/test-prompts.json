@@ -1,0 +1,52 @@
+{
+  "skill": "motorcycle-model-version-gate",
+  "version": "0.1.0",
+  "source_book": "钱江、凯越、升仕官方维修手册合集（41份）",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我这台703F插头针数跟维修手册不一样，还能按图测吗？",
+      "expected_behavior": "应先核对VIN、年款/排放版、控制器零件号和实物差异，再决定资料资格。",
+      "notes": "版本与实车冲突"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "同样是368排量，另一年款节气门体能直接照这个扭矩和针脚吗？",
+      "expected_behavior": "应激活本模块，禁止仅凭排量套用数据。",
+      "notes": "同排量跨年款"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "顾客只说是灰石，我要订ECU，先确认哪些身份信息？",
+      "expected_behavior": "应建立VIN、工厂型号、发动机号、版本和零件号身份卡。",
+      "notes": "高风险订件前门禁"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "这台车一年只骑了800公里，机油和制动液什么时候保养？",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-maintenance-interval-planner。",
+      "notes": "跨skill：保养计划"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "诊断仪报P0443，是不是碳罐电磁阀坏了？",
+      "expected_behavior": "不应由本模块主导，应激活 motorcycle-dtc-evidence-loop。",
+      "notes": "跨skill：报码诊断"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "手册和实车外观一样，但控制器零件号尾号不同，可以继续通电测针脚吗？",
+      "expected_behavior": "应激活本模块；控制器零件号属于高风险差异，未解释前停止通电针脚测试。",
+      "notes": "外观一致但关键身份不同"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "3条应触发、2条不应触发、1条边界；含至少1条同资料集兄弟skill诱饵。"
+}

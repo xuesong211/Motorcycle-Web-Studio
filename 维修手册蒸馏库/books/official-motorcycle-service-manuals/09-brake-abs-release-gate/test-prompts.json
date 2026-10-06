@@ -1,0 +1,52 @@
+{
+  "skill": "motorcycle-brake-abs-release-gate",
+  "version": "0.1.0",
+  "source_book": "钱江、凯越、升仕官方维修手册合集（41份）",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "换完制动液手柄还是软，ABS灯也亮。",
+      "expected_behavior": "应先恢复基础液压、检查泄漏与排气，再处理ABS证据链。",
+      "notes": "液压加ABS"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "ABS灯灭了但刹车无力，可以交车吗？",
+      "expected_behavior": "不得放行；灯灭不能替代基础制动能力验证。",
+      "notes": "电子状态掩盖机械故障"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "换完新盘片第一次推车前需要检查什么？",
+      "expected_behavior": "应多次操作制动建立压力，检查释放、液位和泄漏。",
+      "notes": "新摩擦件"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "刚拆装燃油管，发动机启动前怎么检漏？",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-closed-fluid-system-recovery。",
+      "notes": "跨skill：燃油流体"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "氧传感器报信号高，怎么测ECU线路？",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-dtc-evidence-loop。",
+      "notes": "跨skill：电喷报码"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "ABS灯亮但基础制动手感和制动力暂时正常。",
+      "expected_behavior": "仍应激活本模块；先记录基础制动合格，再进入ABS报码与动态自检，不能忽略警告灯。",
+      "notes": "基础正常但ABS异常"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "3条应触发、2条不应触发、1条边界；含至少1条同资料集兄弟skill诱饵。"
+}

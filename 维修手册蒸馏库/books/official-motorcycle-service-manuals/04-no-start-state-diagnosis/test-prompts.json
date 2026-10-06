@@ -1,0 +1,52 @@
+{
+  "skill": "motorcycle-no-start-state-diagnosis",
+  "version": "0.1.0",
+  "source_book": "钱江、凯越、升仕官方维修手册合集（41份）",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "按启动只有继电器响，起动机不转。",
+      "expected_behavior": "应先归类为不转状态并检查电源、联锁、继电器和起动机。",
+      "notes": "不转"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "起动机转得很快、油泵有声，但发动机不着。",
+      "expected_behavior": "应测燃压、有效火花、喷油和压缩/正时，不能把泵声当燃压。",
+      "notes": "转不着"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "冷车能着但马上熄火，开一点油门才勉强维持。",
+      "expected_behavior": "应归类着即熄并检查怠速空气、温度修正、供油和基础条件。",
+      "notes": "着即熄"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "发动机运转正常但一加油转速高、后轮不走。",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-cvt-drivetrain-diagnosis。",
+      "notes": "跨skill：动力不传递"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "仪表报氧传感器信号高，发动机还能正常起动。",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-dtc-evidence-loop。",
+      "notes": "跨skill：报码"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "偶尔按启动没反应，但现在完全正常。",
+      "expected_behavior": "先组合 motorcycle-symptom-evidence-intake 保存复现条件，再按不转状态使用本模块；不能直接换件。",
+      "notes": "偶发不转需先取证"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "3条应触发、2条不应触发、1条边界；含至少1条同资料集兄弟skill诱饵。"
+}

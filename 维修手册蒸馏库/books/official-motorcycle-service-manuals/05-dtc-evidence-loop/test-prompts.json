@@ -1,0 +1,52 @@
+{
+  "skill": "motorcycle-dtc-evidence-loop",
+  "version": "0.1.0",
+  "source_book": "钱江、凯越、升仕官方维修手册合集（41份）",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "703F报P0443，能直接换碳罐电磁阀吗？",
+      "expected_behavior": "应记录报码后查插头、供电、线路和元件，不凭码直接换件。",
+      "notes": "报码直换件"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "氧传感器换了还报信号故障，晃线束数据会跳。",
+      "expected_behavior": "应停止换件，检查端子张力、线路开短路和数据流后清码复验。",
+      "notes": "换件无效"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "ABS码清掉了灯也灭了，是否已经修好？",
+      "expected_behavior": "应按规定电压/车速触发自检并复读报码，清码不等于修复。",
+      "notes": "清码复验"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "没有任何报码，热车偶尔顿挫且到店正常。",
+      "expected_behavior": "不应先用本模块，应激活 motorcycle-symptom-evidence-intake。",
+      "notes": "跨skill：无报码偶发"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "缸径多点测量后有一处接近维修极限，怎么判？",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-measurement-decision-engine。",
+      "notes": "跨skill：尺寸判定"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "电瓶电压很低，同时出现五个传感器低电压码。",
+      "expected_behavior": "应先使用 motorcycle-power-starting-electrical 恢复供电前提，再用本模块复读与隔离；本模块不可单独主导。",
+      "notes": "前提故障制造多码"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "3条应触发、2条不应触发、1条边界；含至少1条同资料集兄弟skill诱饵。"
+}

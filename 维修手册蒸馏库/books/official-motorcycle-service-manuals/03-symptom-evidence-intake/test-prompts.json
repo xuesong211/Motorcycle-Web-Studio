@@ -1,0 +1,52 @@
+{
+  "skill": "motorcycle-symptom-evidence-intake",
+  "version": "0.1.0",
+  "source_book": "钱江、凯越、升仕官方维修手册合集（41份）",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "车骑半小时偶尔顿一下，到店又完全正常，怎么查？",
+      "expected_behavior": "应先把温度、车速、负载、路况和频率转成复现计划并保护现场。",
+      "notes": "偶发热车症状"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "只有高海拔满油门才没劲，店里复现不了。",
+      "expected_behavior": "应记录海拔、负载、节气门和环境，设计安全单变量复现。",
+      "notes": "条件依赖"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "洗车后偶发熄火但没有当前报码，要怎么写工单？",
+      "expected_behavior": "应记录前置事件并分已证实/已排除/未验证。",
+      "notes": "事件取证"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "ABS报了明确的轮速传感器开路码，如何测线路？",
+      "expected_behavior": "不应由本模块主导，应激活 motorcycle-dtc-evidence-loop。",
+      "notes": "跨skill：明确报码"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "一年没骑多少公里，保养周期怎么算？",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-maintenance-interval-planner。",
+      "notes": "跨skill：计划"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "制动手柄一直发软，没有偶发性，也无需复现。",
+      "expected_behavior": "不应激活本模块，应直接使用 motorcycle-brake-abs-release-gate。",
+      "notes": "持续且高风险的明确症状"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "3条应触发、2条不应触发、1条边界；含至少1条同资料集兄弟skill诱饵。"
+}

@@ -1,0 +1,52 @@
+{
+  "skill": "motorcycle-measurement-decision-engine",
+  "version": "0.1.0",
+  "source_book": "钱江、凯越、升仕官方维修手册合集（41份）",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "缸径一个方向正常、另一个方向快到极限，能继续用吗？",
+      "expected_behavior": "应使用多点最不利值、椭圆/锥度和配合间隙判定。",
+      "notes": "多点最差值"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "CVT皮带没裂但宽度比标准小，按标准值还是维修极限？",
+      "expected_behavior": "应区分健康基准与判废边界，并结合症状和损伤。",
+      "notes": "双阈值"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "活塞缸间隙超限，到底换活塞还是缸体？",
+      "expected_behavior": "应分别测双方、计算间隙并核对尺寸组后归因。",
+      "notes": "配合归因"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "拆四缸气门机构前怎样标记挺柱和垫片？",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-disassembly-traceability。",
+      "notes": "跨skill：拆卸身份"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "缸盖螺栓应该按什么顺序和步骤紧固？",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-reassembly-quality-gates。",
+      "notes": "跨skill：复装"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "零件尺寸没超极限，但已经有贯穿裂纹，能按数值继续使用吗？",
+      "expected_behavior": "可调用本模块作处置解释，但必须判为损伤优先，不能因尺寸未超限放行。",
+      "notes": "损伤覆盖尺寸阈值"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "3条应触发、2条不应触发、1条边界；含至少1条同资料集兄弟skill诱饵。"
+}

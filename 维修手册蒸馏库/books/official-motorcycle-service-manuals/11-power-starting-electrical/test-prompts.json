@@ -1,0 +1,52 @@
+{
+  "skill": "motorcycle-power-starting-electrical",
+  "version": "0.1.0",
+  "source_book": "钱江、凯越、升仕官方维修手册合集（41份）",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "新电瓶装上两天又没电，是整流器坏了吗？",
+      "expected_behavior": "应先验证电池、停车漏电、改装负载、充电输出、磁电机与整流线路。",
+      "notes": "反复亏电"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "按启动继电器响但起动机不转，怎么测压降？",
+      "expected_behavior": "应沿电源、继电器输出、起动机和搭铁执行负载压降测试。",
+      "notes": "起动动力线路"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "边撑收了还是不允许启动，空挡灯偶尔闪。",
+      "expected_behavior": "应检查联锁输入、开关线路与控制许可。",
+      "notes": "起动联锁"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "起动机转得正常但发动机不着。",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-no-start-state-diagnosis。",
+      "notes": "跨skill：转不着"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "只有氧传感器报码，供电和起动都正常。",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-dtc-evidence-loop。",
+      "notes": "跨skill：单一报码"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "低电压时同时报多个传感器码，先逐个查还是先查供电？",
+      "expected_behavior": "应先激活本模块恢复电源前提，再用 motorcycle-dtc-evidence-loop 检查是否复报码。",
+      "notes": "电源前提制造多码"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "3条应触发、2条不应触发、1条边界；含至少1条同资料集兄弟skill诱饵。"
+}

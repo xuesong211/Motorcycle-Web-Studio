@@ -1,0 +1,24 @@
+# Dependencies and generated application output
+node_modules/
+webapp/node_modules/
+webapp/.vinext/
+webapp/dist/
+webapp/.next/
+outputs/
+
+# Environment and local machine files
+.env
+.env.*
+!.env.example
+*.log
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+.baoyu-skills/
+
+# Local source archives and extracted source materials
+品牌官方公开资料/
+摩托车维修电子书_EPUB/
+维修手册蒸馏库/books/official-motorcycle-service-manuals/source_text/
+*.pdf
+*.epub

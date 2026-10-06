@@ -1,0 +1,52 @@
+{
+  "skill": "motorcycle-closed-fluid-system-recovery",
+  "version": "0.1.0",
+  "source_book": "钱江、凯越、升仕官方维修手册合集（41份）",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "刚拆装燃油快接，发动机启动前怎样安全建压检漏？",
+      "expected_behavior": "应断电通风禁火、复核接口，通电建压检漏后才允许起动。",
+      "notes": "燃油开路"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "换冷却液后热车液位下降，要继续补还是查漏？",
+      "expected_behavior": "应完成排气、升温冷却循环并区分残余空气与泄漏。",
+      "notes": "冷却循环"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "换制动软管后怎么排气才能确认系统稳定？",
+      "expected_behavior": "应保持供液端不吸空，排至无气泡和手感稳定，再静态承压检漏。",
+      "notes": "制动开路"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "ABS灯亮，但液压系统没拆过且制动手感正常。",
+      "expected_behavior": "不应由本模块主导，应激活 motorcycle-brake-abs-release-gate。",
+      "notes": "跨skill：ABS放行"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "只更换CVT皮带，油路水路制动都没打开。",
+      "expected_behavior": "不应激活本模块，应使用 motorcycle-cvt-drivetrain-diagnosis 与复装门禁。",
+      "notes": "跨skill：非流体系统"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "水管装好冷态完全不漏，热车后才少液，能直接交车吗？",
+      "expected_behavior": "应激活本模块；必须经历完整温度/压力循环并冷却回查，不得只凭冷态检漏。",
+      "notes": "动态密封边界"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "3条应触发、2条不应触发、1条边界；含至少1条同资料集兄弟skill诱饵。"
+}

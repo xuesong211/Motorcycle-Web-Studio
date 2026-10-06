@@ -1,0 +1,52 @@
+{
+  "skill": "motorcycle-maintenance-interval-planner",
+  "version": "0.1.0",
+  "source_book": "钱江、凯越、升仕官方维修手册合集（41份）",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "钱江踏板多少公里或多久保养一次，哪个先算？",
+      "expected_behavior": "应读取对应车型原表，按时间/里程先到者触发。",
+      "notes": "双触发"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "车放了一年只跑500公里，是不是不用换油液？",
+      "expected_behavior": "应核对时间项，不能只按里程。",
+      "notes": "低里程时间老化"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "每天尘土路短途通勤，空滤和传动检查要不要提前？",
+      "expected_behavior": "应按恶劣工况逐项缩短受影响项目周期。",
+      "notes": "工况修正"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "起动机转但发动机打不着，先查什么？",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-no-start-state-diagnosis。",
+      "notes": "跨skill：故障诊断"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "CVT皮带宽度已经量出来了，怎么判断是否报废？",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-measurement-decision-engine。",
+      "notes": "跨skill：测量判废"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "赛道高负荷使用但手册没给赛用周期，直接全部减半吗？",
+      "expected_behavior": "应激活但明确不能统一减半；提高检查频率并按受影响项目和厂方补充资料修正。",
+      "notes": "无明确倍率的恶劣工况"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "3条应触发、2条不应触发、1条边界；含至少1条同资料集兄弟skill诱饵。"
+}

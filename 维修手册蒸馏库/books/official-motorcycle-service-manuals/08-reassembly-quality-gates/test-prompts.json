@@ -1,0 +1,52 @@
+{
+  "skill": "motorcycle-reassembly-quality-gates",
+  "version": "0.1.0",
+  "source_book": "钱江、凯越、升仕官方维修手册合集（41份）",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "缸头换垫后按拆卸反序装回就行吗？",
+      "expected_behavior": "应核对清洁换新、润滑、正时、顺序分级定扭和静态验收。",
+      "notes": "关键复装"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "旧O形圈看起来没坏，能不能继续用？",
+      "expected_behavior": "应按手册换新要求处理，不能以外观作为复用依据。",
+      "notes": "密封件"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "新制动片装完车还没动，交车前先做什么？",
+      "expected_behavior": "应静态建立手柄/踏板压力并检查安装、释放和泄漏。",
+      "notes": "移动前门禁"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "发动机还没拆，先教我怎么给摇臂和垫片编号。",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-disassembly-traceability。",
+      "notes": "跨skill：拆卸"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "诊断仪报P0443，想知道是不是电磁阀坏。",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-dtc-evidence-loop。",
+      "notes": "跨skill：报码"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "只装回一个无密封、无安全功能的装饰盖，也要走完整四门禁吗？",
+      "expected_behavior": "不必完整调用；按零件说明完成基本紧固和干涉检查即可。",
+      "notes": "低风险装饰件"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "3条应触发、2条不应触发、1条边界；含至少1条同资料集兄弟skill诱饵。"
+}

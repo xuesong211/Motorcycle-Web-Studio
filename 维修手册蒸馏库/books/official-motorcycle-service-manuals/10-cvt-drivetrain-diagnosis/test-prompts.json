@@ -1,0 +1,52 @@
+{
+  "skill": "motorcycle-cvt-drivetrain-diagnosis",
+  "version": "0.1.0",
+  "source_book": "钱江、凯越、升仕官方维修手册合集（41份）",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "升仕踏板一加油转速上去但车速不跟，怎么分皮带还是离合器？",
+      "expected_behavior": "应按工况定位打滑区段并检查皮带、盘、滚子、从动盘和离合器。",
+      "notes": "转速车速脱节"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "钱江踏板起步抖，中高速却基本正常。",
+      "expected_behavior": "应重点验证离合器接合、摩擦面、从动系统与污染。",
+      "notes": "起步区间"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "高速没劲，皮带没裂，滚子要不要查？",
+      "expected_behavior": "应测皮带宽度、滚子失圆和盘面变速行程，不能只看裂纹。",
+      "notes": "高速变速区"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "起动机转但发动机完全不着。",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-no-start-state-diagnosis。",
+      "notes": "跨skill：发动机不起动"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "巡航车链条和链轮磨损，是否成套更换？",
+      "expected_behavior": "不应激活本模块；该车不是CVT，应查链传动专项规则。",
+      "notes": "传动形式诱饵"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "踏板车车速上不去，但后轮制动明显拖滞。",
+      "expected_behavior": "应先使用 motorcycle-brake-abs-release-gate 排除拖滞；基础制动恢复后仍异常才调用本模块。",
+      "notes": "外部负载模拟CVT故障"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "3条应触发、2条不应触发、1条边界；含至少1条同资料集兄弟skill诱饵。"
+}

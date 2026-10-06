@@ -1,0 +1,52 @@
+{
+  "skill": "motorcycle-disassembly-traceability",
+  "version": "0.1.0",
+  "source_book": "钱江、凯越、升仕官方维修手册合集（41份）",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "拆气门机构时挺柱、摇臂和垫片怎么防止混装？",
+      "expected_behavior": "应建立缸位/进排气/方向编码和分格存放。",
+      "notes": "配对件身份"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "CVT拆开前需要拍哪些照片、零件怎么排？",
+      "expected_behavior": "应记录方向、磨痕和顺序，分区存放并保护开口。",
+      "notes": "拆前取证"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "偶发线束故障准备拆车壳，怎样避免拆完证据没了？",
+      "expected_behavior": "应先记录插头、走线、压痕和扰动前数据。",
+      "notes": "偶发故障证据"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "零件已经洗好，现在要换O圈和按扭矩复装。",
+      "expected_behavior": "不应由本模块主导，应激活 motorcycle-reassembly-quality-gates。",
+      "notes": "跨skill：复装"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这辆车应该多少公里换机油？",
+      "expected_behavior": "不应激活本模块，应激活 motorcycle-maintenance-interval-planner。",
+      "notes": "跨skill：保养"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "只拆一个外部、无方向要求的普通护盖螺丝，也要建立完整分格盘吗？",
+      "expected_behavior": "通常不必激活完整流程；仅做基本位置记录，除非护盖后有线束、垫片或故障痕迹。",
+      "notes": "低复杂度拆卸"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "3条应触发、2条不应触发、1条边界；含至少1条同资料集兄弟skill诱饵。"
+}

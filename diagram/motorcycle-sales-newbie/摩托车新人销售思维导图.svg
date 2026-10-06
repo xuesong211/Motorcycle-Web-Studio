@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1200" role="img" aria-labelledby="title desc">
+  <title id="title">摩托车新人销售思维导图</title>
+  <desc id="desc">覆盖车型分类、排量分层、需求诊断、报价、成交、售后技师沟通和风险边界。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="0.52" stop-color="#0b1628"/><stop offset="1" stop-color="#101b31"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#38bdf8" stop-opacity=".20"/><stop offset="1" stop-color="#38bdf8" stop-opacity="0"/></radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".35"/></filter>
+    <style>
+      text{font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif;fill:#e7eef8}
+      .title{font-size:38px;font-weight:800;letter-spacing:2px}.sub{font-size:17px;fill:#9fb2c9}
+      .root{font-size:30px;font-weight:800}.branch{font-size:22px;font-weight:800}.item{font-size:17px;font-weight:650}.small{font-size:14px;fill:#b6c5d7}
+      .node{fill:#111f34;stroke-width:2}.chip{fill:#0a1424;stroke-width:1.4}.line{fill:none;stroke-width:5;stroke-linecap:round;opacity:.76}.twig{fill:none;stroke-width:2.4;stroke-linecap:round;opacity:.60}
+    </style>
+  </defs>
+  <rect width="1920" height="1200" fill="url(#bg)"/>
+  <circle cx="960" cy="595" r="390" fill="url(#halo)"/>
+  <g opacity=".16" stroke="#8aa2bd" stroke-width="1"><path d="M70 170H1850M70 1030H1850M250 70V1130M1670 70V1130"/></g>
+  <text x="90" y="78" class="title">摩托车新人销售 · 一张图跑通选车、报价、成交与售后</text>
+  <text x="92" y="112" class="sub">核心原则：先问用途，再谈排量；先核官网，再报成交；先记录事实，再交技师诊断。</text>
+
+  <!-- organic branches -->
+  <g>
+    <path class="line" stroke="#38bdf8" d="M795 535 C650 490, 590 320, 430 270"/>
+    <path class="line" stroke="#a78bfa" d="M780 590 C610 590, 555 550, 392 550"/>
+    <path class="line" stroke="#fb7185" d="M800 655 C640 720, 590 875, 430 900"/>
+    <path class="line" stroke="#34d399" d="M1125 530 C1280 455, 1320 310, 1490 270"/>
+    <path class="line" stroke="#fbbf24" d="M1140 590 C1300 580, 1360 550, 1515 550"/>
+    <path class="line" stroke="#f97316" d="M1120 660 C1275 735, 1330 875, 1490 900"/>
+  </g>
+
+  <!-- root -->
+  <g filter="url(#shadow)"><rect x="790" y="500" rx="36" width="340" height="210" fill="#0e7490" stroke="#67e8f9" stroke-width="3"/>
+    <text x="960" y="570" text-anchor="middle" class="root">新人摩托车销售</text>
+    <text x="960" y="610" text-anchor="middle" class="item">六问 · 三车 · 一复核</text>
+    <text x="960" y="645" text-anchor="middle" class="small">安全与适配优先于排量和折扣</text>
+    <text x="960" y="674" text-anchor="middle" class="small">报价 = 官网指导价 + 门店政策 + 落地费用</text>
+  </g>
+
+  <!-- left top: category -->
+  <g filter="url(#shadow)"><rect class="node" stroke="#38bdf8" x="170" y="165" rx="26" width="500" height="260"/><text x="205" y="207" class="branch" fill="#7dd3fc">① 车型 × 排量知识</text>
+    <path class="twig" stroke="#38bdf8" d="M205 228H620"/>
+    <text x="205" y="262" class="item">ADV</text><text x="300" y="262" class="small">座高 / 重心 / 铺装与非铺装 / 三箱双载</text>
+    <text x="205" y="300" class="item">巡航</text><text x="300" y="300" class="small">低座不等于轻；看轴距、车重、脚踏位置</text>
+    <text x="205" y="338" class="item">仿赛</text><text x="300" y="338" class="small">骑姿、转向角、壳件成本、通勤舒适度</text>
+    <text x="205" y="376" class="item">踏板</text><text x="300" y="376" class="small">平踏/龙骨、轮径、储物、皮带保养</text>
+    <text x="205" y="407" class="small">≤150 通勤｜250–400 入门玩乐｜450–700 进阶｜800+ 旗舰</text>
+  </g>
+
+  <!-- left middle: discovery -->
+  <g filter="url(#shadow)"><rect class="node" stroke="#a78bfa" x="120" y="455" rx="26" width="545" height="230"/><text x="155" y="498" class="branch" fill="#c4b5fd">② 六问需求诊断</text>
+    <text x="155" y="540" class="item">1 用途</text><text x="260" y="540" class="small">通勤 / 跑山 / 摩旅 / 双载 / 赛道</text>
+    <text x="155" y="576" class="item">2 预算</text><text x="260" y="576" class="small">裸车还是含税险牌照装备的总预算</text>
+    <text x="155" y="612" class="item">3 身体</text><text x="260" y="612" class="small">身高、腿长、力量、旧车与骑龄</text>
+    <text x="155" y="648" class="item">4–6</text><text x="260" y="648" class="small">储物双载 / 路况里程 / 品牌售后偏好</text>
+  </g>
+
+  <!-- left bottom: price -->
+  <g filter="url(#shadow)"><rect class="node" stroke="#fb7185" x="165" y="765" rx="26" width="520" height="270"/><text x="200" y="807" class="branch" fill="#fda4af">③ 报价与成交</text>
+    <text x="200" y="850" class="item">三车阶梯</text><text x="330" y="850" class="small">稳妥款 / 均衡款 / 升级款</text>
+    <text x="200" y="888" class="item">四价分开</text><text x="330" y="888" class="small">官网价 / 门店价 / 活动价 / 落地价</text>
+    <text x="200" y="926" class="item">成交前复核</text><text x="330" y="926" class="small">年款、颜色、库存、VIN、政策截止日</text>
+    <text x="200" y="964" class="item">不硬压单</text><text x="330" y="964" class="small">约静态坐姿 → 合法试驾 → 书面报价</text>
+    <text x="200" y="1004" class="small">价格话术：我把能确定和需要门店确认的部分分开写给您。</text>
+  </g>
+
+  <!-- right top: service tech -->
+  <g filter="url(#shadow)"><rect class="node" stroke="#34d399" x="1250" y="150" rx="26" width="540" height="285"/><text x="1285" y="193" class="branch" fill="#6ee7b7">④ 售后技师沟通</text>
+    <text x="1285" y="235" class="item">先报身份</text><text x="1415" y="235" class="small">车型 / VIN / 里程 / 保养记录</text>
+    <text x="1285" y="273" class="item">再报工况</text><text x="1415" y="273" class="small">冷/热车、挡位、转速、速度、路面</text>
+    <text x="1285" y="311" class="item">描述事实</text><text x="1415" y="311" class="small">声音、振动、灯报码、频率、能否复现</text>
+    <text x="1285" y="349" class="item">补充变量</text><text x="1415" y="349" class="small">改装、摔车、油品、洗车/涉水、视频</text>
+    <text x="1285" y="387" class="item">闭环</text><text x="1415" y="387" class="small">工单号 → 诊断 → 方案 → 时间 → 回访</text>
+    <text x="1285" y="416" class="small">禁语：“通病”“肯定质保”“一定没事”——诊断前不承诺结论。</text>
+  </g>
+
+  <!-- right middle: dialogue -->
+  <g filter="url(#shadow)"><rect class="node" stroke="#fbbf24" x="1270" y="465" rx="26" width="535" height="230"/><text x="1305" y="508" class="branch" fill="#fde68a">⑤ 聊天话术</text>
+    <text x="1305" y="550" class="item">开场</text><text x="1405" y="550" class="small">“先看用途还是总预算？我不急着推排量。”</text>
+    <text x="1305" y="587" class="item">推荐</text><text x="1405" y="587" class="small">“给您三台：稳妥、均衡、升级。”</text>
+    <text x="1305" y="624" class="item">异议</text><text x="1405" y="624" class="small">先复述顾虑，再给证据和可验证下一步</text>
+    <text x="1305" y="661" class="item">收口</text><text x="1405" y="661" class="small">“今天先坐车/试驾，合适再核库存和落地。”</text>
+  </g>
+
+  <!-- right bottom: safety -->
+  <g filter="url(#shadow)"><rect class="node" stroke="#f97316" x="1245" y="770" rx="26" width="555" height="265"/><text x="1280" y="812" class="branch" fill="#fdba74">⑥ 安全与销售边界</text>
+    <text x="1280" y="855" class="item">新手不只看 cc</text><text x="1450" y="855" class="small">车重、重心、座高、油门响应更关键</text>
+    <text x="1280" y="893" class="item">试驾前</text><text x="1450" y="893" class="small">驾照、护具、路线、车辆状态与签署流程</text>
+    <text x="1280" y="931" class="item">不夸大</text><text x="1450" y="931" class="small">不承诺极速、安全绝对化、保值或零故障</text>
+    <text x="1280" y="969" class="item">售后不代诊断</text><text x="1450" y="969" class="small">销售负责记录、协调、解释流程</text>
+    <text x="1280" y="1007" class="small">好销售不是把最大排量卖出去，而是让客户买后仍觉得选对了。</text>
+  </g>
+
+  <text x="92" y="1148" class="small">使用提示：报价前打开工作簿“官网核验明细”；交车后把首保里程、售后联系人和改装边界一次说清。</text>
+</svg>
