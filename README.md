@@ -1,5 +1,9 @@
 # 摩托车维修知识库 Web Studio
 
+## Nginx 发布包
+
+可直接解压部署的发布包位于 [`release/motorcycle-web-studio-nginx.zip`](release/motorcycle-web-studio-nginx.zip)。部署说明和 Nginx 配置源文件在 [`deploy/nginx/README.md`](deploy/nginx/README.md)。
+
 面向摩托车维修学习与工位诊断的本地知识库应用。项目将车型资料、维修流程、基础原理、维修工具和专项车型知识组织成可检索、可执行的学习界面。
 
 ## 已包含内容

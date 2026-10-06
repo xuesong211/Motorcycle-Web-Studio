@@ -1,0 +1,15 @@
+[Unit]
+Description=Motorcycle Web Studio SSR runtime
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/motorcycle-web-studio
+ExecStart=/opt/motorcycle-web-studio/scripts/start.sh
+Restart=on-failure
+RestartSec=5
+Environment=NODE_ENV=production
+Environment=PORT=8787
+
+[Install]
+WantedBy=multi-user.target

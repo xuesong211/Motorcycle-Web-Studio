@@ -5,6 +5,7 @@ webapp/.vinext/
 webapp/dist/
 webapp/.next/
 outputs/
+release/motorcycle-web-studio-nginx/
 
 # Environment and local machine files
 .env
